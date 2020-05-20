@@ -1,8 +1,9 @@
-var buttonColours = ["red","blue","green","yellow"];
+var buttonColors = ["red","blue","green","yellow"];
 
 function nextSequence() {
   var randomNumber = Math.floor(Math.random() * 3);
-  console.log(randomNumber);
+  var randomChosenColor = buttonColors[randomNumber];
+  console.log(randomChosenColor);
 }
 
 nextSequence();

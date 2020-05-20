@@ -12,7 +12,6 @@ function nextSequence() {
   $(".btn").click(function() {
     var userChosenColor = $(this).attr('id');
     userClickedPattern.push(userChosenColor);
-    console.log(userClickedPattern);
   });
 
 }
@@ -28,5 +27,12 @@ function playSound(name) {
   });
 }
 
+function animatePress(currentColor) {
+  $(".btn").click(function() {
+    $(this).addClass("pressed");
+  });
+}
+
 nextSequence();
 playSound();
+animatePress();

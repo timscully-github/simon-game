@@ -48,7 +48,9 @@ function animatePress(currentColor) {
 }
 
 // know when game has started
-$(document).keypress(function(event){
-    nextSequence();
-    $("h1").html("level" + level);
+var started = false;
+$(document).keypress(function(event) {
+  started = true;
+  nextSequence();
+  $("h1").html("level " + level);
 });

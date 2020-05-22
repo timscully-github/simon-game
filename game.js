@@ -1,7 +1,7 @@
 var userClickedPattern = [];
 var gamePattern = [];
 var buttonColors = ["red","blue","green","yellow"];
-var level = -1;
+var level = 0;
 
 // detect button press
 $(".btn").click(function() {
@@ -77,15 +77,23 @@ function checkAnswer(currentLevel) {
 
     started = false;
 
-    $("h1").html("Game over, Refresh the page to restart");
-
-    var audio = new Audio("sounds/wrong.mp3");
-    audio.play();
+    $("h1").html("Game Over, Press Any Key to Restart");
 
     $("body").addClass("game-over");
     setTimeout(function () {
       $("body").removeClass("game-over");
     }, 200);
 
+    playSound("wrong");
+
+    startOver();
+
   }
+}
+
+// reset the game
+function startOver() {
+  level = 0;
+  gamePattern = [];
+  started = false;
 }

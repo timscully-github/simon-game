@@ -69,9 +69,11 @@ function checkAnswer(currentLevel) {
   if (userClickedPattern[i] == gamePattern[i]) {
     console.log("success");
     i++;
+    setTimeout(function () {
+      nextSequence();
+      userClickedPattern = [];
+    }, 1000);
   } else {
     console.log("failed");
   }
-  console.log(userClickedPattern);
-  console.log(gamePattern);
 }

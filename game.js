@@ -32,7 +32,6 @@ function nextSequence() {
 
   playSound(randomChosenColor);
 
-console.log(userClickedPattern);
 }
 
 
@@ -76,6 +75,9 @@ function checkAnswer(currentLevel) {
     }
   } else {
     started = false;
-    $("h1").html("Game over at level " + level + " Refresh the page to restart");
+    $("h1").html("Game over, Refresh the page to restart");
+
+    var audio = new Audio("sounds/wrong.mp3");
+    audio.play();
   }
 }

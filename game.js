@@ -5,17 +5,25 @@ var level = -1;
 
 // detect button press
 $(".btn").click(function() {
+
   var userChosenColor = $(this).attr('id');
   userClickedPattern.push(userChosenColor);
 
   playSound(userChosenColor);
 
   animatePress(userChosenColor);
+
+  checkAnswer(userClickedPattern.length);
+
 });
 
 // create next in sequence for game
 function nextSequence() {
-  console.log("game started");
+
+  level++;
+
+  $("h1").html("level " + level);
+
   var randomNumber = Math.floor(Math.random() * 4);
   var randomChosenColor = buttonColors[randomNumber];
   gamePattern.push(randomChosenColor);
@@ -24,11 +32,9 @@ function nextSequence() {
 
   playSound(randomChosenColor);
 
-  level++;
-
-  console.log(gamePattern);
-  console.log(level);
+console.log(userClickedPattern);
 }
+
 
 function playSound(name) {
 
@@ -40,7 +46,6 @@ function playSound(name) {
 function animatePress(currentColor) {
 
   $("#" + currentColor).addClass("pressed");
-
   setTimeout(function () {
     $("#" + currentColor).removeClass("pressed");
   }, 100);
@@ -50,7 +55,23 @@ function animatePress(currentColor) {
 // know when game has started
 var started = false;
 $(document).keypress(function(event) {
-  started = true;
-  nextSequence();
-  $("h1").html("level " + level);
+  if (!started) {
+      $("h1").html("level " + level);
+      nextSequence();
+      started = true;
+  }
 });
+
+// check if user is successful during gamePattern
+function checkAnswer(currentLevel) {
+
+  var i = 0;
+  if (userClickedPattern[i] == gamePattern[i]) {
+    console.log("success");
+    i++;
+  } else {
+    console.log("failed");
+  }
+  console.log(userClickedPattern);
+  console.log(gamePattern);
+}

@@ -2,7 +2,7 @@ var userClickedPattern = [];
 var gamePattern = [];
 var buttonColors = ["red","blue","green","yellow"];
 
-
+// detect button press
 $(".btn").click(function() {
   var userChosenColor = $(this).attr('id');
   userClickedPattern.push(userChosenColor);
@@ -10,11 +10,11 @@ $(".btn").click(function() {
   playSound(userChosenColor);
 
   animatePress(userChosenColor);
-  }
-);
+});
 
+// create next in sequence for game
 function nextSequence() {
-
+  console.log("game started");
   var randomNumber = Math.floor(Math.random() * 4);
   var randomChosenColor = buttonColors[randomNumber];
   gamePattern.push(randomChosenColor);
@@ -23,6 +23,7 @@ function nextSequence() {
 
   playSound(randomChosenColor);
 
+  console.log(gamePattern);
 }
 
 function playSound(name) {
@@ -39,7 +40,10 @@ function animatePress(currentColor) {
   setTimeout(function () {
     $("#" + currentColor).removeClass("pressed");
   }, 100);
+
 }
 
-
-animatePress();
+// know when game has started
+$(document).keypress(function(event){
+    nextSequence();
+});

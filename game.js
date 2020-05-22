@@ -1,7 +1,7 @@
 var userClickedPattern = [];
 var gamePattern = [];
 var buttonColors = ["red","blue","green","yellow"];
-var level = 0;
+var level = -1;
 
 // detect button press
 $(".btn").click(function() {
@@ -24,7 +24,10 @@ function nextSequence() {
 
   playSound(randomChosenColor);
 
+  level++;
+
   console.log(gamePattern);
+  console.log(level);
 }
 
 function playSound(name) {
@@ -47,5 +50,5 @@ function animatePress(currentColor) {
 // know when game has started
 $(document).keypress(function(event){
     nextSequence();
-    $("h1").html("Level 0");
+    $("h1").html("level" + level);
 });

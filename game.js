@@ -13,7 +13,7 @@ $(".btn").click(function() {
 
   animatePress(userChosenColor);
 
-  checkAnswer(userClickedPattern.length);
+  checkAnswer(userClickedPattern.length - 1);
 
 });
 
@@ -65,15 +65,17 @@ $(document).keypress(function(event) {
 // check if user is successful during gamePattern
 function checkAnswer(currentLevel) {
 
-  var i = 0;
-  if (userClickedPattern[i] == gamePattern[i]) {
-    console.log("success");
-    i++;
-    setTimeout(function () {
-      nextSequence();
-      userClickedPattern = [];
-    }, 1000);
+  if (userClickedPattern[currentLevel] == gamePattern[currentLevel]) {
+    if (userClickedPattern.length === gamePattern.length){
+
+      setTimeout(function () {
+        nextSequence();
+        userClickedPattern = [];
+      }, 1000);
+
+    }
   } else {
-    console.log("failed");
+    started = false;
+    $("h1").html("Game over at level " + level + " Refresh the page to restart");
   }
 }
